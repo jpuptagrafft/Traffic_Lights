@@ -44,7 +44,12 @@ namespace trafficLights
 
             //By Default, both lights will be Red
             public char NSLight = Globals.LIGHT_COLORS[2];
-            public char EWLigth = Globals.LIGHT_COLORS[2];
+            public char EWLight = Globals.LIGHT_COLORS[2];
+
+            public bool NGoing = false;
+            public bool SGoing = false;
+            public bool EGoing = false;
+            public bool WGoing = false;
 
         }
         static Car[] createCarList()
@@ -67,29 +72,31 @@ namespace trafficLights
         static bool carLogic(Intersection inter, int section)
         {
             Car carToCheck;
-            switch(section){
+            bool returnValue = false;
+            switch (section)
+            {
                 case 0: //North Check
                     carToCheck = inter.NLine[0];
                     if (carToCheck.going == Globals.TURNING[0]) //Straight
                     {
                         if (inter.NSLight == Globals.LIGHT_COLORS[0] || inter.NSLight == Globals.LIGHT_COLORS[1])
                         { //If Light is Green or Yellow
-                            return true;
+                            returnValue = true;
                         }
                         else
                         {
-                            return false;
+                            returnValue = false;
                         }
                     }
                     else if (carToCheck.going == Globals.TURNING[1]) //Left
                     {
                         if (inter.NSLight == Globals.LIGHT_COLORS[0] && inter.SLine.Length == 0)
                         { //If Light is Green & Paralel Line is Empty
-                            return true;
+                            returnValue = true;
                         }
                         else
                         {
-                            return false;
+                            returnValue = false;
                         }
 
                     }
@@ -97,19 +104,138 @@ namespace trafficLights
                     {
                         if (inter.NSLight == Globals.LIGHT_COLORS[0] || inter.ELine.Length == 0)
                         { //If Light is Green or No Oncoming Traffic
-                            return true;
+                            returnValue = true;
                         }
                         else
                         {
-                            return false;
+                            returnValue = false;
                         }
                     }
+                    inter.NGoing = returnValue;
+                    break;
                 case 1: //South Check
+                    carToCheck = inter.SLine[0];
+                    if (carToCheck.going == Globals.TURNING[0]) //Straight
+                    {
+                        if (inter.NSLight == Globals.LIGHT_COLORS[0] || inter.NSLight == Globals.LIGHT_COLORS[1])
+                        { //If Light is Green or Yellow
+                            returnValue = true;
+                        }
+                        else
+                        {
+                            returnValue = false;
+                        }
+                    }
+                    else if (carToCheck.going == Globals.TURNING[1]) //Left
+                    {
+                        if (inter.NSLight == Globals.LIGHT_COLORS[0] && inter.NLine.Length == 0)
+                        { //If Light is Green & Paralel Line is Empty
+                            returnValue = true;
+                        }
+                        else
+                        {
+                            returnValue = false;
+                        }
+
+                    }
+                    else //Right
+                    {
+                        if (inter.NSLight == Globals.LIGHT_COLORS[0] || inter.WLine.Length == 0)
+                        { //If Light is Green or No Oncoming Traffic
+                            returnValue = true;
+                        }
+                        else
+                        {
+                            returnValue = false;
+                        }
+                    }
+                    inter.SGoing = returnValue;
                     break;
                 case 2: //East Check
+                    carToCheck = inter.ELine[0];
+                    if (carToCheck.going == Globals.TURNING[0]) //Straight
+                    {
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] || inter.EWLight == Globals.LIGHT_COLORS[1])
+                        { //If Light is Green or Yellow
+                            returnValue = true;
+                        }
+                        else
+                        {
+                            returnValue = false;
+                        }
+                    }
+                    else if (carToCheck.going == Globals.TURNING[1]) //Left
+                    {
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] && inter.WLine.Length == 0)
+                        {//If Light is Green & Paralel Line is Empty
+                            returnValue = true;
+                        }
+                        else
+                        {
+                            returnValue = false;
+                        }
+                    }
+                    else //Right
+                    {
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] || inter.NLine.Length == 0)
+                        { //If Light is Green or No Oncoming Traffic
+                            returnValue = true;
+                        }
+                        else
+                        {
+                            returnValue = false;
+                        }
+                    }
+                    inter.EGoing = returnValue;
                     break;
                 case 3: //West Check
+                    carToCheck = inter.WLine[0];
+                    if (carToCheck.going == Globals.TURNING[0]) //Straight
+                    {
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] || inter.EWLight == Globals.LIGHT_COLORS[1])
+                        { //If Light is Green or Yellow
+                            returnValue = true;
+                        }
+                        else
+                        {
+                            returnValue = false;
+                        }
+                    }
+                    else if (carToCheck.going == Globals.TURNING[1]) //Left
+                    {
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] && inter.ELine.Length == 0)
+                        {//If Light is Green & Paralel Line is Empty
+                            returnValue = true;
+                        }
+                        else
+                        {
+                            returnValue = false;
+                        }
+                    }
+                    else //Right
+                    {
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] || inter.SLine.Length == 0)
+                        { //If light is Green or No Oncoming Triffic
+                            returnValue = true;
+                        }
+                        else
+                        {
+                            returnValue = false;
+                        }
+                    }
+                    inter.WGoing = returnValue;
                     break;
+            }
+            return returnValue;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Starting Simulation...\n");
+            Intersection intersection = new Intersection();
+            int secCount = 0; //count for 
+            Console.WriteLine("Creating Car List...\n");
+            Car[] carList = createCarList();
+
         }
     }
 }

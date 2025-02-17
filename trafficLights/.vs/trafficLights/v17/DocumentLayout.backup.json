@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\James Uptagrafft\\Documents\\TrafficLights\\trafficLights\\",
+  "WorkspaceRootPath": "C:\\Users\\James Uptagrafft\\Documents\\TrafficLights\\Traffic_Lights\\trafficLights\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96986209-127C-4148-9023-C6B17C039E96}|trafficLights\\trafficLights.csproj|c:\\users\\james uptagrafft\\documents\\trafficlights\\trafficlights\\trafficlights\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{96986209-127C-4148-9023-C6B17C039E96}|trafficLights\\trafficLights.csproj|c:\\users\\james uptagrafft\\documents\\trafficlights\\traffic_lights\\trafficlights\\trafficlights\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96986209-127C-4148-9023-C6B17C039E96}|trafficLights\\trafficLights.csproj|solutionrelative:trafficlights\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\James Uptagrafft\\Documents\\TrafficLights\\trafficLights\\trafficLights\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\James Uptagrafft\\Documents\\TrafficLights\\Traffic_Lights\\trafficLights\\trafficLights\\Program.cs",
               "RelativeDocumentMoniker": "trafficLights\\Program.cs",
-              "ToolTip": "C:\\Users\\James Uptagrafft\\Documents\\TrafficLights\\trafficLights\\trafficLights\\Program.cs",
+              "ToolTip": "C:\\Users\\James Uptagrafft\\Documents\\TrafficLights\\Traffic_Lights\\trafficLights\\trafficLights\\Program.cs",
               "RelativeToolTip": "trafficLights\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBgAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-09T20:11:35.147Z",
               "EditorCaption": ""
