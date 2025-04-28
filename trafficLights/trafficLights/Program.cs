@@ -55,7 +55,7 @@ namespace trafficLights
         static Car[] createCarList()
         {
             Random rnd = new Random();
-            Car[] returnValue = { };
+            Car[] returnValue = new Car[Globals.NUM_CARS];
             for (int i = 0; i < Globals.NUM_CARS; i++)
             {
                 int goingNum = rnd.Next(0, 3);
@@ -228,14 +228,54 @@ namespace trafficLights
             }
             return returnValue;
         }
+        static void printInfo(int time, Intersection inter)
+        {
+            Console.WriteLine("Pass " + time + ":");
+            Console.WriteLine("NORTH PASSAGE");
+            Console.WriteLine("Car line up: " + inter.NLine.Length);
+            Console.WriteLine("Score: " + inter.NSScore);
+            Console.WriteLine("Direction: " + inter.NLine[0].going);
+            Console.WriteLine();
+            Console.WriteLine("EAST PASSAGE");
+            Console.WriteLine("Car line up: " + inter.ELine.Length);
+            Console.WriteLine("Score: " + inter.EWScore);
+            Console.WriteLine("Direction: " + inter.ELine[0].going);
+            Console.WriteLine();
+            Console.WriteLine("SOUTH PASSAGE");
+            Console.WriteLine("Car line up: " + inter.SLine.Length);
+            Console.WriteLine("Score: " + inter.NSScore);
+            Console.WriteLine("Direction: " + inter.SLine[0].going);
+            Console.WriteLine();
+            Console.WriteLine("WEST PASSAGE");
+            Console.WriteLine("Car line up: " + inter.WLine.Length);
+            Console.WriteLine("Score: " + inter.EWScore);
+            Console.WriteLine("Direction: " + inter.WLine[0].going);
+            Console.WriteLine();
+            Console.WriteLine("North-South Light: " + inter.NSLight);
+            Console.WriteLine("East-West Light: " + inter.EWLight);
+
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Starting Simulation...\n");
             Intersection intersection = new Intersection();
-            int secCount = 0; //count for 
+            int secCount = 0; //count for section 
             Console.WriteLine("Creating Car List...\n");
             Car[] carList = createCarList();
+            Console.WriteLine("Starting Simulation...");
+            while (secCount < Globals.TIME_SECTION)
+            {
+                for (int i = 0; i < carList.Length; i++)
+                {
+                    if (carList[i].arrivalTime == secCount)
+                    {
+                        if (carList[i].arrivalEdge == Globals.DIRECTIONS[0])
+                        {
 
+                        }
+                    }
+                }
+            }
         }
     }
 }

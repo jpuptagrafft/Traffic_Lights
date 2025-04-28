@@ -1,0 +1,15 @@
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\bin\Debug\net8.0\trafficLights.exe
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\bin\Debug\net8.0\trafficLights.deps.json
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\bin\Debug\net8.0\trafficLights.runtimeconfig.json
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\bin\Debug\net8.0\trafficLights.dll
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\bin\Debug\net8.0\trafficLights.pdb
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\trafficLights.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\trafficLights.AssemblyInfoInputs.cache
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\trafficLights.AssemblyInfo.cs
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\trafficLights.csproj.CoreCompileInputs.cache
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\trafficLights.sourcelink.json
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\trafficLights.dll
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\refint\trafficLights.dll
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\trafficLights.pdb
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\trafficLights.genruntimeconfig.cache
+C:\Users\James Uptagrafft\Documents\TrafficLights\Traffic_Lights\trafficLights\trafficLights\obj\Debug\net8.0\ref\trafficLights.dll
