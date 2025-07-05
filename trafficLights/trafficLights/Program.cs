@@ -34,13 +34,13 @@ namespace trafficLights
 
         class Intersection
         {
-            public Car[] NLine = { };//Car lineup coming from the North
-            public Car[] SLine = { };//Car lineup coming from the South
-            public Car[] ELine = { };//Car lineup coming from the East
-            public Car[] WLine = { };//Car lineup coming from the West
+            public List<Car> NLine = new List<Car>();//Car lineup coming from the North
+            public List<Car> SLine = new List<Car>();//Car lineup coming from the South
+            public List<Car> ELine = new List<Car>();//Car lineup coming from the East
+            public List<Car> WLine = new List<Car>();//Car lineup coming from the West
 
-            public int NSScore;//Talley of Car's waitingScore from the North and South
-            public int EWScore;//Talley of Car's waitingScore from the East and West
+            public double NSScore;//Talley of Car's waitingScore from the North and South
+            public double EWScore;//Talley of Car's waitingScore from the East and West
 
             //By Default, both lights will be Red
             public char NSLight = Globals.LIGHT_COLORS[2];
@@ -51,11 +51,12 @@ namespace trafficLights
             public bool EGoing = false;
             public bool WGoing = false;
 
+            public int response_time = 10; //lights cannot change unless response_time > Global MINIMUM_TIME_INTERVAL
         }
-        static Car[] createCarList()
+        static List<Car> createCarList()
         {
             Random rnd = new Random();
-            Car[] returnValue = new Car[Globals.NUM_CARS];
+            List<Car> returnValue = new List<Car>();
             for (int i = 0; i < Globals.NUM_CARS; i++)
             {
                 int goingNum = rnd.Next(0, 3);
@@ -63,9 +64,9 @@ namespace trafficLights
                 {
                     goingNum = 0; //Ensuring Straight is the most common route; Perhaps not the most accurate...
                 }
-                returnValue[i] = new Car(rnd.Next(0, Globals.TIME_SECTION), Globals.DIRECTIONS[rnd.Next(0, 4)], Globals.TURNING[goingNum]);
+                returnValue.Add(new Car(rnd.Next(0, Globals.TIME_SECTION), Globals.DIRECTIONS[rnd.Next(0, 4)], Globals.TURNING[goingNum]));
             }
-            Car[] newReturnValue = returnValue.OrderBy(x => x.arrivalTime).ToArray();
+            List<Car> newReturnValue = returnValue.OrderBy(x => x.arrivalTime).ToList();
             return newReturnValue;
 
         }
@@ -90,7 +91,7 @@ namespace trafficLights
                     }
                     else if (carToCheck.going == Globals.TURNING[1]) //Left
                     {
-                        if (inter.NSLight == Globals.LIGHT_COLORS[0] && inter.SLine.Length == 0)
+                        if (inter.NSLight == Globals.LIGHT_COLORS[0] && inter.SLine.Count == 0)
                         { //If Light is Green & Paralel Line is Empty
                             returnValue = true;
                         }
@@ -102,7 +103,7 @@ namespace trafficLights
                     }
                     else //Right
                     {
-                        if (inter.NSLight == Globals.LIGHT_COLORS[0] || inter.ELine.Length == 0)
+                        if (inter.NSLight == Globals.LIGHT_COLORS[0] || inter.ELine.Count == 0)
                         { //If Light is Green or No Oncoming Traffic
                             returnValue = true;
                         }
@@ -128,7 +129,7 @@ namespace trafficLights
                     }
                     else if (carToCheck.going == Globals.TURNING[1]) //Left
                     {
-                        if (inter.NSLight == Globals.LIGHT_COLORS[0] && inter.NLine.Length == 0)
+                        if (inter.NSLight == Globals.LIGHT_COLORS[0] && inter.NLine.Count == 0)
                         { //If Light is Green & Paralel Line is Empty
                             returnValue = true;
                         }
@@ -140,7 +141,7 @@ namespace trafficLights
                     }
                     else //Right
                     {
-                        if (inter.NSLight == Globals.LIGHT_COLORS[0] || inter.WLine.Length == 0)
+                        if (inter.NSLight == Globals.LIGHT_COLORS[0] || inter.WLine.Count == 0)
                         { //If Light is Green or No Oncoming Traffic
                             returnValue = true;
                         }
@@ -166,7 +167,7 @@ namespace trafficLights
                     }
                     else if (carToCheck.going == Globals.TURNING[1]) //Left
                     {
-                        if (inter.EWLight == Globals.LIGHT_COLORS[0] && inter.WLine.Length == 0)
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] && inter.WLine.Count == 0)
                         {//If Light is Green & Paralel Line is Empty
                             returnValue = true;
                         }
@@ -177,7 +178,7 @@ namespace trafficLights
                     }
                     else //Right
                     {
-                        if (inter.EWLight == Globals.LIGHT_COLORS[0] || inter.NLine.Length == 0)
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] || inter.NLine.Count == 0)
                         { //If Light is Green or No Oncoming Traffic
                             returnValue = true;
                         }
@@ -203,7 +204,7 @@ namespace trafficLights
                     }
                     else if (carToCheck.going == Globals.TURNING[1]) //Left
                     {
-                        if (inter.EWLight == Globals.LIGHT_COLORS[0] && inter.ELine.Length == 0)
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] && inter.ELine.Count == 0)
                         {//If Light is Green & Paralel Line is Empty
                             returnValue = true;
                         }
@@ -214,7 +215,7 @@ namespace trafficLights
                     }
                     else //Right
                     {
-                        if (inter.EWLight == Globals.LIGHT_COLORS[0] || inter.SLine.Length == 0)
+                        if (inter.EWLight == Globals.LIGHT_COLORS[0] || inter.SLine.Count == 0)
                         { //If light is Green or No Oncoming Triffic
                             returnValue = true;
                         }
@@ -232,27 +233,43 @@ namespace trafficLights
         {
             Console.WriteLine("Pass " + time + ":");
             Console.WriteLine("NORTH PASSAGE");
-            Console.WriteLine("Car line up: " + inter.NLine.Length);
+            Console.WriteLine("Car line up: " + inter.NLine.Count);
             Console.WriteLine("Score: " + inter.NSScore);
-            Console.WriteLine("Direction: " + inter.NLine[0].going);
+            if (inter.NLine.Count > 0)
+            {
+                Console.WriteLine("Direction: " + inter.NLine[0].going);
+            }
             Console.WriteLine();
             Console.WriteLine("EAST PASSAGE");
-            Console.WriteLine("Car line up: " + inter.ELine.Length);
+            Console.WriteLine("Car line up: " + inter.ELine.Count);
             Console.WriteLine("Score: " + inter.EWScore);
-            Console.WriteLine("Direction: " + inter.ELine[0].going);
+            if (inter.ELine.Count > 0)
+            {
+                Console.WriteLine("Direction: " + inter.ELine[0].going);
+            }
             Console.WriteLine();
             Console.WriteLine("SOUTH PASSAGE");
-            Console.WriteLine("Car line up: " + inter.SLine.Length);
+            Console.WriteLine("Car line up: " + inter.SLine.Count);
             Console.WriteLine("Score: " + inter.NSScore);
-            Console.WriteLine("Direction: " + inter.SLine[0].going);
+            if (inter.SLine.Count > 0)
+            {
+                Console.WriteLine("Direction: " + inter.SLine[0].going);
+            }
             Console.WriteLine();
             Console.WriteLine("WEST PASSAGE");
-            Console.WriteLine("Car line up: " + inter.WLine.Length);
+            Console.WriteLine("Car line up: " + inter.WLine.Count);
             Console.WriteLine("Score: " + inter.EWScore);
-            Console.WriteLine("Direction: " + inter.WLine[0].going);
+            if (inter.WLine.Count > 0)
+            {
+                Console.WriteLine("Direction: " + inter.WLine[0].going);
+            }
             Console.WriteLine();
             Console.WriteLine("North-South Light: " + inter.NSLight);
             Console.WriteLine("East-West Light: " + inter.EWLight);
+
+        }
+        static void intersection_brain(Intersection inter)
+        {
 
         }
         static void Main(string[] args)
@@ -261,20 +278,38 @@ namespace trafficLights
             Intersection intersection = new Intersection();
             int secCount = 0; //count for section 
             Console.WriteLine("Creating Car List...\n");
-            Car[] carList = createCarList();
+            List<Car> carList = createCarList();
             Console.WriteLine("Starting Simulation...");
             while (secCount < Globals.TIME_SECTION)
             {
-                for (int i = 0; i < carList.Length; i++)
+                for (int i = 0; i < carList.Count; i++)//adding cars to intersection
                 {
                     if (carList[i].arrivalTime == secCount)
                     {
                         if (carList[i].arrivalEdge == Globals.DIRECTIONS[0])
                         {
-
+                            intersection.NLine.Add(carList[i]);
                         }
+                        if (carList[i].arrivalEdge == Globals.DIRECTIONS[1])
+                        {
+                            intersection.SLine.Add(carList[i]);
+                        }
+                        if (carList[i].arrivalEdge == Globals.DIRECTIONS[2]) 
+                        {
+                            intersection.ELine.Add(carList[i]);
+                        }
+                        if (carList[i].arrivalEdge == Globals.DIRECTIONS[3])
+                        {
+                            intersection.WLine.Add(carList[i]);
+                        }
+                        carList.RemoveAt(i);
+                        i--;
                     }
                 }
+                Console.Clear();
+                printInfo(secCount, intersection);
+
+                secCount++;
             }
         }
     }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("trafficLights")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cd342e983be1d9091d813d10ed8c3350a7ad1cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2dcd9322bafe17e0b04f5bd7ddc9d445453998f5")]
 [assembly: System.Reflection.AssemblyProductAttribute("trafficLights")]
 [assembly: System.Reflection.AssemblyTitleAttribute("trafficLights")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
